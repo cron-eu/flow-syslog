@@ -7,8 +7,8 @@
 		"typo3/flow": "3.0.*"
 	},
     "autoload": {
-        "psr-0": {
-            "CRON\\Flow\\Log\\Backend": "Classes"
+        "psr-4": {
+            "CRON\\Syslog\\": "Classes"
         }
     }
 }

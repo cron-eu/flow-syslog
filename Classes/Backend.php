@@ -6,9 +6,9 @@
  * Time: 20:59
  */
 
-namespace CRON\Flow\Log\Backend;
+namespace CRON\Syslog;
 
-class SyslogBackend extends \TYPO3\Flow\Log\Backend\AbstractBackend {
+class Backend extends \TYPO3\Flow\Log\Backend\AbstractBackend {
 
 	protected $name = 'flow-app';
 
