@@ -11,6 +11,14 @@ This is especially useful while integrating external services for log-management
 [Papertrail](https://papertrailapp.com), which are using the syslog protocol for (securely) access. 
 
 
+Install
+-------
+
+```
+composer require cron-eu/flow-syslog:dev-master --update-no-dev
+```
+
+
 Setup
 -----
 
