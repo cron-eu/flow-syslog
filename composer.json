@@ -1,5 +1,5 @@
 {
-    "name": "cron/flow-syslog",
+    "name": "cron-eu/flow-syslog",
     "type": "typo3-flow-package",
     "license": "MIT",
     "description": "Implements a Flow LogBackend for the local syslog daemon",
