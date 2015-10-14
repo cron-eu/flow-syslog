@@ -29,7 +29,7 @@ TYPO3:
   Flow:
     log:
       systemLogger:
-        backend: CRON\Syslog\Backend
+        backend: CRON\Flow\Log\Backend\SyslogBackend
         backendOptions:
           # identifies the application
           name: 'my-awesome-flow-app'

@@ -8,7 +8,7 @@
 	},
     "autoload": {
         "psr-4": {
-            "CRON\\Syslog\\": "Classes"
+            "CRON\\Flow\\Log\\Backend\\": "Classes"
         }
     }
 }
