@@ -51,9 +51,23 @@ class SyslogBackend extends \TYPO3\Flow\Log\Backend\AbstractBackend {
 	 * @return void
 	 * @api
 	 */
-	public function append($message, $severity = LOG_INFO, $additionalData = NULL, $packageKey = NULL, $className = NULL, $methodName = NULL) {
-		$output = sprintf('%s %s', $packageKey, $message);
+	public function append($message, $severity = LOG_INFO, $additionalData = NULL, $packageKey = NULL,
+	                       $className = NULL, $methodName = NULL) {
 
+		if ($severity > $this->severityThreshold) { return; }
+
+		// package key
+		$output = sprintf('[%s]', $packageKey);
+
+		// + message itself
+		$output .= sprintf(' %s', $message);
+
+		// + remote addr, if requested
+		if ($this->logIpAddress === TRUE) {
+			$output .= sprintf(' (%s)', isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '-');
+		}
+
+		// + additional data
 		if (!empty($additionalData)) {
 			$output .= PHP_EOL . $this->getFormattedVarDump($additionalData);
 		}

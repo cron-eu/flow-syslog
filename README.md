@@ -22,7 +22,7 @@ composer require cron-eu/flow-syslog:dev-master --update-no-dev
 Setup
 -----
 
-Configure this Backend for the e.g. systemLogger:
+Configure the Backend for the e.g. systemLogger and securityLogger:
 
 ```
 TYPO3:
@@ -33,12 +33,41 @@ TYPO3:
         backendOptions:
           # identifies the application
           name: 'my-awesome-flow-app'
-          # syslog facility code, defaults to 17 (LOG_LOCAL1)
-          # see https://en.wikipedia.org/wiki/Syslog
-          facility: 17 
+          # log all 
+          severityThreshold: '%LOG_DEBUG%'
+          # syslog facility code, default is LOG_LOCAL1
+          facility: '%LOG_LOCAL3%'
+      securityLogger:
+        backend: CRON\Flow\Log\Backend\SyslogBackend
+        backendOptions:
+          # identifies the application
+          name: 'my-awesome-flow-app'
+          severityThreshold: '%LOG_DEBUG%'
+          facility: '%LOG_LOCAL3%'
 ```
 
-This Backend can be used for other Flow loggers, like `securityLogger`, `sqlLogger`, ...
+
+### Syslog Severity Levels
+
+Value | Code        | Description
+------|-------------|-----------------------------------------
+0     | LOG_EMERG   | system is unusable
+1     | LOG_ALERT   | action must be taken immediately
+2     | LOG_CRIT    | critical conditions
+3     | LOG_ERR     | error conditions
+4     | LOG_WARNING | warning conditions
+5     | LOG_NOTICE  | normal, but significant, condition
+6     | LOG_INFO    | informational message
+7     | LOG_DEBUG   | debug-level message
+
+I do recommend to disable the severityThreshold, setting it to `LOG_DEBUG` and setup syslog for the
+filtering/routing.
+
+
+References
+----------
+
+* https://en.wikipedia.org/wiki/Syslog
 
 
 License
