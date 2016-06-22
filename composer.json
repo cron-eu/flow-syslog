@@ -4,7 +4,7 @@
     "license": "MIT",
     "description": "Implements a Flow LogBackend for the local syslog daemon",
 	"require": {
-		"typo3/flow": "3.0.*"
+		"typo3/flow": "3.*"
 	},
     "autoload": {
         "psr-4": {
