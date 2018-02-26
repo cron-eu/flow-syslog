@@ -1,10 +1,10 @@
 {
     "name": "cron-eu/flow-syslog",
-    "type": "typo3-flow-package",
+    "type": "neos-package",
     "license": "MIT",
     "description": "Implements a Flow LogBackend for the local syslog daemon",
 	"require": {
-		"typo3/flow": "3.*"
+		"neos/flow": "4.*"
 	},
     "autoload": {
         "psr-4": {

@@ -8,7 +8,7 @@
 
 namespace CRON\Flow\Log\Backend;
 
-class SyslogBackend extends \TYPO3\Flow\Log\Backend\AbstractBackend {
+class SyslogBackend extends \Neos\Flow\Log\Backend\AbstractBackend {
 
 	protected $name = 'flow-app';
 
