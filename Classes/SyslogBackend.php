@@ -64,7 +64,7 @@ class SyslogBackend extends \TYPO3\Flow\Log\Backend\AbstractBackend {
 
 		// + remote addr, if requested
 		if ($this->logIpAddress === TRUE) {
-		    $ip = $this->getClientIPAddress();
+			$ip = $this->getClientIPAddress();
 			$output .= sprintf(' (%s)', $ip ? $ip : '-');
 		}
 
@@ -76,28 +76,28 @@ class SyslogBackend extends \TYPO3\Flow\Log\Backend\AbstractBackend {
 		syslog($severity, $output);
 	}
 
-    /**
-     * Fetches the client IP address, also taking care of upstream proxies, if needed
-     *
-     * @return string|null
-     */
-    function getClientIPAddress() {
-        if (isset($_SERVER['REMOTE_ADDR'])) {
-            $remoteAddr = new \IpUtils\Address\IPv4($_SERVER['REMOTE_ADDR']);
+	/**
+	 * Fetches the client IP address, also taking care of upstream proxies, if needed
+	 *
+	 * @return string|null
+	 */
+	function getClientIPAddress() {
+		if (isset($_SERVER['REMOTE_ADDR'])) {
+			$remoteAddr = new \IpUtils\Address\IPv4($_SERVER['REMOTE_ADDR']);
 
-            if (!$remoteAddr) { return null; }
+			if (!$remoteAddr) { return null; }
 
-            if (!$remoteAddr->isPrivate()) {
-                return $remoteAddr->getExpanded();
-            }
-        }
+			if (!$remoteAddr->isPrivate()) {
+				return $remoteAddr->getExpanded();
+			}
+		}
 
-        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            return $_SERVER['HTTP_X_FORWARDED_FOR'];
-        }
+		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			return $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}
 
-        return null;
-    }
+		return null;
+	}
 
 	/**
 	 * Carries out all actions necessary to cleanly close the logging backend, such as
