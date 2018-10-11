@@ -3,10 +3,10 @@
     "type": "typo3-flow-package",
     "license": "MIT",
     "description": "Implements a Flow LogBackend for the local syslog daemon",
-	"require": {
-		"typo3/flow": "3.*",
-		"xrstf/ip-utils": "1.1.*"
-	},
+    "require": {
+        "typo3/flow": "3.*",
+        "xrstf/ip-utils": "1.1.*"
+    },
     "autoload": {
         "psr-4": {
             "CRON\\Flow\\Log\\Backend\\": "Classes"
