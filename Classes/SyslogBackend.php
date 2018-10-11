@@ -81,7 +81,7 @@ class SyslogBackend extends \TYPO3\Flow\Log\Backend\AbstractBackend {
 	 *
 	 * @return string|null
 	 */
-	function getClientIPAddress() {
+	protected function getClientIPAddress() {
 		if (isset($_SERVER['REMOTE_ADDR'])) {
 			$remoteAddr = new \IpUtils\Address\IPv4($_SERVER['REMOTE_ADDR']);
 
