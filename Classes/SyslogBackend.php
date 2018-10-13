@@ -93,10 +93,8 @@ class SyslogBackend extends \TYPO3\Flow\Log\Backend\AbstractBackend {
 
 			if (IPv4::isValid($_SERVER['REMOTE_ADDR'])) {
 				$remoteAddr = new IPv4($_SERVER['REMOTE_ADDR']);
-			} else {
-				if (IPv6::isValid($_SERVER['REMOTE_ADDR'])) {
-					$remoteAddr = new IPv6($_SERVER['REMOTE_ADDR']);
-				}
+			} elseif (IPv6::isValid($_SERVER['REMOTE_ADDR'])) {
+				$remoteAddr = new IPv6($_SERVER['REMOTE_ADDR']);
 			}
 
 			if (!$remoteAddr) { return null; }
