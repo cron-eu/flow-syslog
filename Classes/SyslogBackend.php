@@ -88,14 +88,16 @@ class SyslogBackend extends \TYPO3\Flow\Log\Backend\AbstractBackend {
 	protected function getClientIPAddress() {
 		if (isset($_SERVER['REMOTE_ADDR'])) {
 
-            /** @var AddressInterface $remoteAddr */
-            $remoteAddr = null;
+			/** @var AddressInterface $remoteAddr */
+			$remoteAddr = null;
 
-		    if (IPv4::isValid($_SERVER['REMOTE_ADDR'])) {
-                $remoteAddr = new IPv4($_SERVER['REMOTE_ADDR']);
-            } else if (IPv6::isValid($_SERVER['REMOTE_ADDR'])) {
-                $remoteAddr = new IPv6($_SERVER['REMOTE_ADDR']);
-            }
+			if (IPv4::isValid($_SERVER['REMOTE_ADDR'])) {
+				$remoteAddr = new IPv4($_SERVER['REMOTE_ADDR']);
+			} else {
+				if (IPv6::isValid($_SERVER['REMOTE_ADDR'])) {
+					$remoteAddr = new IPv6($_SERVER['REMOTE_ADDR']);
+				}
+			}
 
 			if (!$remoteAddr) { return null; }
 
