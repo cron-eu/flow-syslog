@@ -8,6 +8,10 @@
 
 namespace CRON\Flow\Log\Backend;
 
+use IpUtils\Address\AddressInterface;
+use IpUtils\Address\IPv4;
+use IpUtils\Address\IPv6;
+
 class SyslogBackend extends \TYPO3\Flow\Log\Backend\AbstractBackend {
 
 	protected $name = 'flow-app';
@@ -83,7 +87,15 @@ class SyslogBackend extends \TYPO3\Flow\Log\Backend\AbstractBackend {
 	 */
 	protected function getClientIPAddress() {
 		if (isset($_SERVER['REMOTE_ADDR'])) {
-			$remoteAddr = new \IpUtils\Address\IPv4($_SERVER['REMOTE_ADDR']);
+
+			/** @var AddressInterface $remoteAddr */
+			$remoteAddr = null;
+
+			if (IPv4::isValid($_SERVER['REMOTE_ADDR'])) {
+				$remoteAddr = new IPv4($_SERVER['REMOTE_ADDR']);
+			} elseif (IPv6::isValid($_SERVER['REMOTE_ADDR'])) {
+				$remoteAddr = new IPv6($_SERVER['REMOTE_ADDR']);
+			}
 
 			if (!$remoteAddr) { return null; }
 
